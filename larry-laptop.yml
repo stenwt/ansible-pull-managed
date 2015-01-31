@@ -1,7 +1,6 @@
 --- 
 
 - hosts: localhost
-  sudo: True
 
   roles: 
     - role-ansible-pull
