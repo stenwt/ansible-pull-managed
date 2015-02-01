@@ -5,6 +5,7 @@
   roles: 
     - role-ansible-pull
     - role-auto-apply-updates
+    - role-yum-google-chrome
 
   tasks: 
 
