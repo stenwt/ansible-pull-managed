@@ -1,0 +1,12 @@
+[submodule "roles/role-ansible-pull"]
+	path = roles/role-ansible-pull
+	url = https://github.com/stenwt/role-ansible-pull
+[submodule "roles/role-auto-apply-updates"]
+	path = roles/role-auto-apply-updates
+	url = https://github.com/stenwt/role-auto-apply-updates
+[submodule "roles/role-centos7-dejadup"]
+	path = roles/role-centos7-dejadup
+	url = https://github.com/stenwt/role-centos7-dejadup
+[submodule "roles/role-epel"]
+	path = roles/role-epel
+	url = https://github.com/goozbach-ansible/role-epel
