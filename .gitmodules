@@ -7,3 +7,6 @@
 [submodule "roles/role-epel"]
 	path = roles/role-epel
 	url = https://github.com/goozbach-ansible/role-epel
+[submodule "roles/role-yum-google-chrome"]
+	path = roles/role-yum-google-chrome
+	url = https://github.com/stenwt/role-yum-google-chrome.git
