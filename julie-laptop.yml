@@ -10,10 +10,10 @@
   tasks: 
 
     - name="Install Deja-Dup"
-      yum: >
-        name = {{ item }}
-        state = installed
+      yum: 
+        name: {{ item }}
+        state: installed
         with_items:
           - https://dl.fedoraproject.org/pub/epel/6/x86_64/duplicity-0.6.22-3.el6.x86_64.rp://kojipkgs.fedoraproject.org//work/tasks/4399/8714399/deja-dup-32.0-3.el7.x86_64.rpm
           - https://kojipkgs.fedoraproject.org//work/tasks/4399/8714399/deja-dup-nautilus-32.0-3.el7.x86_64.rpm
-        disable_gpg_check = yes
+        disable_gpg_check: yes
