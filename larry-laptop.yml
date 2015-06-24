@@ -6,6 +6,7 @@
     - role-ansible-pull
     - role-auto-apply-updates
     - role-yum-google-chrome
+    - role-centos7-multimedia
 
   tasks: 
 
@@ -15,5 +16,8 @@
         state: installed
         disable_gpg_check: yes
       with_items:
-        - https://kojipkgs.fedoraproject.org//work/tasks/4399/8714399/deja-dup-32.0-3.el7.x86_64.rpm
-        - https://kojipkgs.fedoraproject.org//work/tasks/4399/8714399/deja-dup-nautilus-32.0-3.el7.x86_64.rpm
+        # http://koji.fedoraproject.org/koji/taskinfo?taskID=10201455
+        - https://kojipkgs.fedoraproject.org//work/tasks/1458/10201458/python-cloudfiles-1.7.10-6.el7.noarch.rpm
+        # http://koji.fedoraproject.org/koji/taskinfo?taskID=10201440
+        - https://kojipkgs.fedoraproject.org//work/tasks/1442/10201442/deja-dup-34.0-1.el7.x86_64.rpm
+        - https://kojipkgs.fedoraproject.org//work/tasks/1442/10201442/deja-dup-nautilus-34.0-1.el7.x86_64.rpm
