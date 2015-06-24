@@ -10,3 +10,6 @@
 [submodule "roles/role-yum-google-chrome"]
 	path = roles/role-yum-google-chrome
 	url = https://github.com/stenwt/role-yum-google-chrome.git
+[submodule "roles/role-centos7-multimedia"]
+	path = roles/role-centos7-multimedia
+	url = git@github.com:stenwt/role-centos7-multimedia.git
