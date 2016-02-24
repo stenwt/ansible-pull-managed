@@ -1,17 +1,17 @@
---- 
+---
 
 - hosts: localhost
 
-  roles: 
+  roles:
     - role-ansible-pull
     - role-auto-apply-updates
     - role-yum-google-chrome
     - role-centos7-multimedia
 
-  tasks: 
+  tasks:
 
     - name: "Install Deja-Dup"
-      yum: 
+      yum:
         name: "{{ item }}"
         state: installed
         disable_gpg_check: yes
