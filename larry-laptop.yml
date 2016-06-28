@@ -16,6 +16,6 @@
         state: installed
         disable_gpg_check: yes
       with_items:
-        - https://kojipkgs.fedoraproject.org//work/tasks/1458/10201458/python-cloudfiles-1.7.10-6.el7.noarch.rpm
-        - https://kojipkgs.fedoraproject.org//work/tasks/1442/10201442/deja-dup-34.0-1.el7.x86_64.rpm
-        - https://kojipkgs.fedoraproject.org//work/tasks/1442/10201442/deja-dup-nautilus-34.0-1.el7.x86_64.rpm
+        - https://kojipkgs.fedoraproject.org/packages/python-cloudfiles/1.7.11/1.el7/noarch/python-cloudfiles-1.7.11-1.el7.noarch.rpm
+        - https://kojipkgs.fedoraproject.org/packages/deja-dup/34.2/2.el7/x86_64/deja-dup-34.2-2.el7.x86_64.rpm
+        - https://kojipkgs.fedoraproject.org//packages/deja-dup/34.2/2.el7/ppc64/deja-dup-nautilus-34.2-2.el7.ppc64.rpm
