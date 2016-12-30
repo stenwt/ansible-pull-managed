@@ -4,7 +4,6 @@
 
   roles:
     - role-ansible-pull
-    - role-auto-apply-updates
     - role-yum-google-chrome
     - role-centos7-multimedia
 
@@ -18,3 +17,7 @@
         - python-cloudfiles
         - deja-dup
         - deja-dup-nautilus
+    - name: "Cancel yum-crom
+      yum:
+        name: yum-cron
+        state: absent
