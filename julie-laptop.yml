@@ -17,7 +17,7 @@
         - python-cloudfiles
         - deja-dup
         - deja-dup-nautilus
-    - name: "Cancel yum-crom
+    - name: "Cancel yum-cron"
       yum:
         name: yum-cron
         state: absent
