@@ -14,6 +14,7 @@
     when: "{{ item }} is undefined"
     with_items:
     - fqdn
+    - token
     run_once: True
 
   roles:
@@ -42,9 +43,7 @@
       listen: "new base config"
       shell: |
              str=$(mktemp -u -d XXXX) ;
-             git stash &&
              git checkout -b auto-add-management-config-$str &&
              git add {{ fqdn|quote }}.yml &&
              git commit -m 'auto add config file' &&
-             git remote add gitmask https://git.gitmask.com/stenwt/ansible-pull-managed.git &&
-             git push gitmask auto-add-management-config-$str:master
+             git push -u https://stenwt:{{ token|quote }}@github.com/stenwt/ansible-pull-managed auto-add-management-config-$str:master

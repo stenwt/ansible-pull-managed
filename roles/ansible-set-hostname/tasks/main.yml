@@ -1,18 +1,11 @@
 ---
 
-  - name: Check for required variables
-    fail:
-      msg: "Please define {{ item }}"
-    when: "{{ item }} is undefined"
-    with_items:
-    - fqdn
-
   - name: Set DHCP hostname to match hostname
     lineinfile: 
       name: /etc/sysconfig/network
       regexp: '^DHCP_HOSTNAME'
-      line: "DHCP_HOSTNAME={{ fqdn }}"
+      line: "DHCP_HOSTNAME={{ fqdn | default(ansible_nodename) }}"
 
   - name: Set hostname if not set 
-    command: "hostnamectl set-hostname {{ fqdn }}"
-    when: ansible_nodename != fqdn 
+    command: "hostnamectl set-hostname {{ fqdn |default(ansible_nodename) }}"
+    when: fqdn is defined

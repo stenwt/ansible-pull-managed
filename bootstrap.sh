@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Don't do this:
-# curl https://raw.githubusercontent.com/stenwt/ansible-pull-managed/master/bootstrap.sh | sudo NAME=my.fq.dn bash
+# curl https://raw.githubusercontent.com/stenwt/ansible-pull-managed/master/bootstrap.sh | sudo TOKEN=foo NAME=my.fq.dn bash
  
 # Get Ansible installed so we can that it can manage this host
 
@@ -54,7 +54,7 @@ if [ $(git --version) -a $(ansible --version) ]; then
   pushd $(mktemp)
   git clone https://github.com/stenwt/ansible-pull-managed
   cd ansible-pull-managed
-  ansible-playbook manage-me.yml -e fqdn=$NAME
+  ansible-playbook manage-me.yml -e fqdn=$NAME -e token=$TOKEN
 else
   echo "Something failed, not going further"
 fi

@@ -8,5 +8,6 @@
   tasks:
 
     - name: "Ansible-pull is managing this system" 
-      file: "{{ fqdn }}.yml" 
-      state: touch 
+      file: 
+        name: "{{ fqdn }}.yml" 
+        state: touch 
