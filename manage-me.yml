@@ -1,0 +1,50 @@
+---
+
+- hosts: localhost
+
+  vars: 
+    ansible_pull_repo_url: 'https://github.com/stenwt/ansible-pull-managed'
+    ansible_pull_command: 'sudo /usr/bin/ansible-pull -U {{ansible_pull_repo_url}} -o'
+
+  pre_tasks: 
+
+  - name: Check for required variables
+    fail:
+      msg: "Please define {{ item }} with '-e {{ item }}' on the command line"
+    when: "{{ item }} is undefined"
+    with_items:
+    - fqdn
+    run_once: True
+
+  roles:
+    - ansible-set-hostname 
+
+  tasks: 
+    ## change this to systemd timer
+    #- name:  Cron job runs as the user who first ran this playbook
+    #  cron: 
+    #    name: "Run Ansible Pull"
+    #    special_time: "daily"
+    #    user:  "{{ ansible_user_id}}"
+    #    job:  "{{ ansible_pull_command }}"
+    #    state: present
+
+    - name: require a management file for this host
+      template: 
+        dest: "./{{ fqdn }}.yml"
+        src: base-config.yml.j2
+        force: no
+      notify: 
+        - new base config
+
+  handlers: 
+    - name: push to git repo
+      listen: "new base config"
+      shell: |
+             str=$(mktemp -u -d XXXX) ;
+             git stash &&
+             git checkout -b auto-add-management-config-$str &&
+             git add {{ fqdn|quote }}.yml &&
+             git commit -m 'auto add config file' &&
+             git remote add gitmask https://git.gitmask.com/stenwt/ansible-pull-managed.git &&
+             git push gitmask auto-add-management-config-$str:master
