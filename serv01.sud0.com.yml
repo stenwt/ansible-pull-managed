@@ -1,0 +1,12 @@
+---
+
+- hosts: localhost
+
+  roles: 
+    - ansible-set-hostname
+
+  tasks:
+
+    - name: "Ansible-pull is managing this system" 
+      file: "serv01.sud0.com.yml" 
+      state: touch 
