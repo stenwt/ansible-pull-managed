@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Don't do this:
+# curl https://raw.githubusercontent.com/stenwt/ansible-pull-managed/master/bootstrap.sh | sudo NAME=my.fq.dn bash
+ 
 # Get Ansible installed so we can that it can manage this host
 
 # Get OS + version so we know how to install Ansible + deps
@@ -47,11 +50,11 @@ function installansiblewithdeps {
 installansiblewithdeps
 
 # Grab my ansible-pull repo and set up config management
-if [ -f $(which git) -a -f $(which ansible) ]; then
-  pushd /tmp
+if [ $(git --version) -a $(ansible --version) ]; then
+  pushd $(mktemp)
   git clone https://github.com/stenwt/ansible-pull-managed
   cd ansible-pull-managed
-  ansible-playbook manage-me.yml
+  ansible-playbook manage-me.yml -e fqdn=$NAME
 else
   echo "Something failed, not going further"
 fi
