@@ -50,7 +50,7 @@ function installansiblewithdeps {
 installansiblewithdeps
 
 # Grab my ansible-pull repo and set up config management
-if [ $(git --version) -a $(ansible --version) ]; then
+if [ -e /usr/bin/git -a -e /usr/bin/ansible ]; then
   pushd $(mktemp -d)
   git clone https://github.com/stenwt/ansible-pull-managed
   cd ansible-pull-managed
