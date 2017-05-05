@@ -39,7 +39,7 @@ function installansiblewithdeps {
     fi 
     ;;
   centos|rhel)
-    yum -y install git ansible 
+    yum -y install epel-release; yum -y install git ansible 
     ;;
   *)
     echo "this host type is not added yet"
@@ -51,7 +51,7 @@ installansiblewithdeps
 
 # Grab my ansible-pull repo and set up config management
 if [ $(git --version) -a $(ansible --version) ]; then
-  pushd $(mktemp)
+  pushd $(mktemp -d)
   git clone https://github.com/stenwt/ansible-pull-managed
   cd ansible-pull-managed
   ansible-playbook manage-me.yml -e fqdn=$NAME -e token=$TOKEN
