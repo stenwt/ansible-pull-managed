@@ -1,5 +1,5 @@
 ---
 
-  name: systemctl daemon-reload
-  listen: "systemctl daemon-reload" 
-  command: "systemctl daemon-reload" 
+  - name: systemctl daemon-reload
+    listen: "systemctl daemon-reload" 
+    command: "systemctl daemon-reload" 
