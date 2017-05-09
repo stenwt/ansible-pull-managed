@@ -1,10 +1,17 @@
 ---
 
+  - name: Check for network config file
+    stat: path=/etc/sysconfig/network
+    register: sysconfig_network
+
   - name: Set DHCP hostname to match hostname
     lineinfile: 
       name: /etc/sysconfig/network
       regexp: '^DHCP_HOSTNAME'
       line: "DHCP_HOSTNAME={{ fqdn | default(ansible_nodename) }}"
+      create: no
+      state: present
+    when: sysconfig_network.stat.exists == True
 
   - name: Set hostname if not set 
     command: "hostnamectl set-hostname {{ fqdn |default(ansible_nodename) }}"
