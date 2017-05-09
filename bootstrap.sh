@@ -21,9 +21,9 @@ function whathosttypeami {
     ostype="rhel"
     osvers=$(rpm -q --qf "%{VERSION}" redhat-release)
   fi
-  if [ -f /etc/debian_release ]; then 
+  if [ -f /etc/debian_version ]; then 
     ostype="debian"
-    osvers=$(cat /etc/debian_release)
+    osvers=$(cat /etc/debian_version)
   fi
   ## what else? 
   export ostype osvers
