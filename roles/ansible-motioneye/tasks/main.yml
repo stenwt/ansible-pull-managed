@@ -1,61 +1,61 @@
 ---
 
-  name: install motioneye ffmpeg
-  apt:
-    deb: https://github.com/ccrisan/motioneye/wiki/precompiled/ffmpeg_3.1.1-1_armhf.deb
-    state: present
+  - name: install motioneye ffmpeg
+    apt:
+      deb: https://github.com/ccrisan/motioneye/wiki/precompiled/ffmpeg_3.1.1-1_armhf.deb
+      state: present
 
-  name: install library deps
-  apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - python-pip 
-    - python-dev 
-    - curl 
-    - libssl-dev 
-    - libcurl4-openssl-dev 
-    - libjpeg-dev 
-    - libx264-142 
-    - libavcodec56 
-    - libavformat56 
-    - libmysqlclient18 
-    - libswscale3 
-    - libpq5
+  - name: install library deps
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - python-pip 
+      - python-dev 
+      - curl 
+      - libssl-dev 
+      - libcurl4-openssl-dev 
+      - libjpeg-dev 
+      - libx264-142 
+      - libavcodec56 
+      - libavformat56 
+      - libmysqlclient18 
+      - libswscale3 
+      - libpq5
 
-  name: install motioneye motion
-  apt:
-    deb: https://github.com/Motion-Project/motion/releases/download/release-4.0.1/pi_jessie_motion_4.0.1-1_armhf.deb
-    state: present
+  - name: install motioneye motion
+    apt:
+      deb: https://github.com/Motion-Project/motion/releases/download/release-4.0.1/pi_jessie_motion_4.0.1-1_armhf.deb
+      state: present
 
-  name: install motioneye
-  pip:
-    name: motioneye
-    state: present
-  notify: systemctl daemon-reload
+  - name: install motioneye
+    pip:
+      name: motioneye
+      state: present
+    notify: systemctl daemon-reload
 
-  name: enable rpi camera module
-  lineinfile:
-    dest: /etc/modules
-    line: "bcm2835-v4l2"
+  - name: enable rpi camera module
+    lineinfile:
+      dest: /etc/modules
+      line: "bcm2835-v4l2"
 
-  name: motioneye directories exists
-  file: 
-    name: "{{ item }}"
-    state: directory
-  with_items:
-    - /etc/motioneye
-    - /var/lib/motioneye
+  - name: motioneye directories exists
+    file: 
+      name: "{{ item }}"
+      state: directory
+    with_items:
+      - /etc/motioneye
+      - /var/lib/motioneye
   
-  name: motioneye config exists
-  copy:
-    src: /usr/local/share/motioneye/extra/motioneye.conf.sample
-    dest: /etc/motioneye/motioneye.conf
-    force: no
+  - name: motioneye config exists
+    copy:
+      src: /usr/local/share/motioneye/extra/motioneye.conf.sample
+      dest: /etc/motioneye/motioneye.conf
+      force: no
  
-  name: motioneye service runs 
-  service:
-    name: motioneye
-    state: started
-    enabled: yes
+  - name: motioneye service runs 
+    service:
+      name: motioneye
+      state: started
+      enabled: yes
 
