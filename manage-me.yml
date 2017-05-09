@@ -46,4 +46,4 @@
              git checkout -b auto-add-management-config-$str &&
              git add {{ fqdn|quote }}.yml &&
              git commit -m 'auto add config file' &&
-             git push -u https://stenwt:{{ token|quote }}@github.com/stenwt/ansible-pull-managed auto-add-management-config-$str:master
+             git push -u https://stenwt:{{ token|quote }}@github.com/stenwt/ansible-pull-managed auto-add-management-config-$str
