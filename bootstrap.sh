@@ -21,7 +21,11 @@ function whathosttypeami {
     ostype="rhel"
     osvers=$(rpm -q --qf "%{VERSION}" redhat-release)
   fi
-  ## debian, rasbian, what else? 
+  if [ -f /etc/debian_release ]; then 
+    ostype="debian"
+    osvers=$(cat /etc/debian_release)
+  fi
+  ## what else? 
   export ostype osvers
 } 
 
@@ -40,6 +44,9 @@ function installansiblewithdeps {
     ;;
   centos|rhel)
     yum -y install epel-release; yum -y install git ansible 
+    ;;
+  debian)
+    apt-get -y install git ansible
     ;;
   *)
     echo "this host type is not added yet"
