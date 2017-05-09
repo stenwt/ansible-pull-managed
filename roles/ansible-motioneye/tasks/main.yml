@@ -32,7 +32,6 @@
     pip:
       name: motioneye
       state: present
-    notify: systemctl daemon-reload
 
   - name: enable rpi camera module
     lineinfile:
@@ -46,6 +45,13 @@
     with_items:
       - /etc/motioneye
       - /var/lib/motioneye
+
+  - name: motiioneye service exists
+    copy:
+      src: /usr/local/share/motioneye/extra/motioneye.systemd-unit-local 
+      dest: /etc/systemd/system/motioneye.service
+      force: no
+    notify: systemctl daemon-reload
   
   - name: motioneye config exists
     copy:
