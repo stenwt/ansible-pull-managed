@@ -46,7 +46,13 @@ function installansiblewithdeps {
     yum -y install epel-release; yum -y install git ansible 
     ;;
   debian)
-    apt-get -y install git ansible
+    if [ $osvers == "8.0" ]; then
+      if [ ! -f /etc/apt/sources.list.d/backports.list ]; then
+        echo "deb http://ftp.debian.org/debian jessie-backports main" \
+          > /etc/apt/sources.list.d/backports.list
+      fi
+      apt-get -t jessie-backports -y install git ansible
+    fi
     ;;
   *)
     echo "this host type is not added yet"
