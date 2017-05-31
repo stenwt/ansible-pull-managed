@@ -10,3 +10,12 @@
       name: nginx
       state: started
       enabled: true
+
+  - name: Nginx is accessible via firewalld
+    firewalld:
+      service: "{{ item }}"
+      state: enabled
+      permanent: true
+    with_items:
+      - http
+      - https
