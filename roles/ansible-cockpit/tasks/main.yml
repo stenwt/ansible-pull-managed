@@ -1,0 +1,28 @@
+---
+
+  - name: cockpit is installed
+    dnf:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - cockpit
+      - cockpit-pcp
+      - cockpit-selinux
+      - cockpit-shell
+      - cockpit-bridge
+      - cockpit-dashboard
+      - cockpit-storaged
+      - cockpit-networkmanager
+      - cockpit-system
+
+  - name: cockpit service is running
+    service: 
+      name: cockpit.socket
+      state: started
+      enabled: true
+
+  - name: cockpit is accessible via firewall
+    firewalld:
+      service: cockpit
+      state: enabled
+      permanent: true
