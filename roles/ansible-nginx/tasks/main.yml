@@ -4,3 +4,9 @@
     dnf:
       name: nginx
       state: present
+
+  - name: Nginx is running
+    service:
+      name: nginx
+      state: started
+      enabled: true
