@@ -2,6 +2,9 @@
 
 - hosts: localhost
 
+  vars: 
+    ansible_pull_url: https://github.com/stenwt/ansible-pull-managed 
+
   roles: 
     - ansible-set-hostname
     - role-ansible-pull
