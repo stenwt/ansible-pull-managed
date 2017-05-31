@@ -1,0 +1,8 @@
+---
+
+  - name: Install Nextcloud from git
+    git: 
+      repo: https://github.com/nextcloud/server.git
+      dest: /srv/www/nextcloud
+      version: stable12
+      

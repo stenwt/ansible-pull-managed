@@ -1,0 +1,6 @@
+---
+
+  - name: Nginx is installed
+    dnf:
+      name: nginx
+      state: present

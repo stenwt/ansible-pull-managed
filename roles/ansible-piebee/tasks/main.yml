@@ -1,0 +1,5 @@
+---
+
+  - name: install RasBee software
+    apt:
+      deb: http://www.dresden-elektronik.de/rpi/deconz/deconz-latest.deb

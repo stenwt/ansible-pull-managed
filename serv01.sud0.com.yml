@@ -4,10 +4,11 @@
 
   roles: 
     - ansible-set-hostname
+    - ansible-nextcloud
 
   tasks:
 
     - name: "Ansible-pull is managing this system" 
       file: 
         name: serv01.sud0.com.yml
-        state: touch 
+        state: touch
