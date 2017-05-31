@@ -4,6 +4,7 @@
 
   roles: 
     - ansible-set-hostname
+    - role-ansible-pull
     - ansible-nextcloud
 
   tasks:
