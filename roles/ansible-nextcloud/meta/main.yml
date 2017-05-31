@@ -1,3 +1,4 @@
 ---
 
-  - dependencies: [ 'ansible-nginx' ]
+  dependencies: 
+    - { role: 'ansible-nginx' }
