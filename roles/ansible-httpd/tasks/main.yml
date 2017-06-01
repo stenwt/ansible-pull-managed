@@ -1,0 +1,23 @@
+---
+
+  - name: httpd is installed
+    dnf:
+      name: httpd
+      state: present
+
+  - name: httpd is running
+    service:
+      name: httpd
+      state: started
+      enabled: true
+
+  - name: httpd is accessible via firewalld
+    firewalld:
+      service: "{{ item }}"
+      state: enabled
+      permanent: true
+      immediate: true
+    with_items:
+      - http
+      - https
+
