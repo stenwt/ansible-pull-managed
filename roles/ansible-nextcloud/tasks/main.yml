@@ -10,10 +10,11 @@
       - php-json
       - php-mbstring
       - php-xml
+      - php-pecl-zip
 
   - name: Nextcloud from git is installed 
     git: 
       repo: https://github.com/nextcloud/server.git
-      dest: /srv/www/nextcloud
+      dest: /var/www/html/nextcloud
       version: stable12
       

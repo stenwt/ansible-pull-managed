@@ -21,3 +21,12 @@
       - http
       - https
 
+
+  - name: httpd has selinux bools set
+    seboolean:
+      name: "{{ item }}"
+      state: yes
+      persistent: yes
+    with_items:
+      - httpd_unified
+      - httpd_can_network_connect
