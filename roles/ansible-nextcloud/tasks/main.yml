@@ -1,6 +1,17 @@
 ---
 
-  - name: Install Nextcloud from git
+  - name: Nextcloud requirements are installed
+    dnf: 
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - php-pdo
+      - php-gd 
+      - php-json
+      - php-mbstring
+      - php-xml
+
+  - name: Nextcloud from git is installed 
     git: 
       repo: https://github.com/nextcloud/server.git
       dest: /srv/www/nextcloud
