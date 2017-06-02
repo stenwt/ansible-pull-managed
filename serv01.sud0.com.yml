@@ -12,14 +12,14 @@
 
   tasks:
 
-    - name: "Ansible-pull is managing this system" 
-      file: 
-        name: serv01.sud0.com.yml
-        state: touch
-
     - name: "sda1 is mounted" 
       mount:
         path: /srv/nextcloud
         src: /dev/sda1
         fstype: ext4
         state: mounted
+
+    - name: "Ansible-pull is managing this system" 
+      file: 
+        name: serv01.sud0.com.yml
+        state: touch
