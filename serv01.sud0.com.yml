@@ -12,10 +12,20 @@
 
   tasks:
 
-    - name: "sda1 is mounted" 
+    - name: cryptsetup is installed
+      dnf:
+        name: cryptsetup
+        state: present 
+
+    - name: crypttab is configured
+      lineinfile:
+        dest: /etc/crypttab
+        line: "thumb01_crypt /dev/disk/by-uuid/e3f399bb-6a70-4e61-89c9-686684b55aad /root/sda luks" 
+
+    - name: "thumbdrive is mounted" 
       mount:
         path: /srv/nextcloud
-        src: /dev/sda1
+        src: /dev/mapper/thumb01_crypt
         fstype: ext4
         state: mounted
 
@@ -23,3 +33,6 @@
       file: 
         name: serv01.sud0.com.yml
         state: touch
+
+## dd if=/dev/urandom of=/root/sda bs=1024 count=4
+## cryptsetup luksAddKey /dev/sda1 /root/sda
