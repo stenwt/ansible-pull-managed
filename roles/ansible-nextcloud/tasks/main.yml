@@ -5,6 +5,11 @@
       name: python-firewall
       state: present
 
+  - name: ansible can manage selinux
+    dnf:
+      name: libsemanage-python
+      state: present
+
   - name: httpd is installed
     dnf:
       name: httpd
@@ -66,6 +71,6 @@
   - name: Set nextcloud data dir
     lineinfile:
       dest: /var/www/nextcloud/config/config.php
-      regexp: '  \'datadirectory\.*' 
-      line: '  \'datadirectory\' => \'{{ datadir }}\',\''
-    when datadir is defined
+      regexp: '^.*datadirectory.*' 
+      line: "  \'datadirectory\' => \'{{ nextcloud_datadir }}\',\'"
+    when: nextcloud_datadir is defined
