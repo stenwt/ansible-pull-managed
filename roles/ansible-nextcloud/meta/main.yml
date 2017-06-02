@@ -1,5 +1,0 @@
----
-
-  dependencies: 
-    - { role: 'ansible-httpd' }
-    - { role: 'ansible-php' }
