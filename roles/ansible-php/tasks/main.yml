@@ -1,6 +1,0 @@
----
-
-  - name:  php is installed
-    dnf: 
-      name: php
-      state: present 

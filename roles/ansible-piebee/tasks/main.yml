@@ -1,5 +1,16 @@
 ---
 
-  - name: install RasBee software
+  - name: RasBee prereqs are installed
+    apt:
+      name: "{{ item }}" 
+      state: present
+    with_items:
+      - qt5-default 
+      - libqt5sql5 
+      - libqt5websockets5-dev 
+      - libqt5serialport5-dev 
+      - wiringpi
+
+  - name: RasBee software is installed
     apt:
       deb: http://www.dresden-elektronik.de/rpi/deconz/deconz-latest.deb

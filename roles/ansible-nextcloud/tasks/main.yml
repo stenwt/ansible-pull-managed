@@ -1,5 +1,45 @@
 ---
 
+  - name: ansible can manage firewalld
+    dnf:
+      name: python-firewall
+      state: present
+
+  - name: httpd is installed
+    dnf:
+      name: httpd
+      state: present
+
+  - name: httpd is running
+    service:
+      name: httpd
+      state: started
+      enabled: true
+
+  - name: httpd is accessible via firewalld
+    firewalld:
+      service: "{{ item }}"
+      state: enabled
+      permanent: true
+      immediate: true
+    with_items:
+      - http
+      - https
+
+  - name: httpd has selinux bools set
+    seboolean:
+      name: "{{ item }}"
+      state: yes
+      persistent: yes
+    with_items:
+      - httpd_unified
+      - httpd_can_network_connect
+
+  - name:  php is installed
+    dnf:
+      name: php
+      state: present
+
   - name: Nextcloud requirements are installed
     dnf: 
       name: "{{ item }}"
@@ -18,3 +58,14 @@
       dest: /var/www/html/nextcloud
       version: stable12
       
+  - name: Nextcloud php opcache tuning is installed
+    copy:
+      src: php-opcache.ini
+      dest: /etc/php.d/99-php-opcache.ini
+
+  - name: Set nextcloud data dir
+    lineinfile:
+      dest: /var/www/nextcloud/config/config.php
+      regexp: '  \'datadirectory\.*' 
+      line: '  \'datadirectory\' => \'{{ datadir }}\',\''
+    when datadir is defined

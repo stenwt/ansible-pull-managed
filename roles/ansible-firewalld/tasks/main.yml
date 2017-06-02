@@ -1,6 +1,0 @@
----
-
-  - name: ansible can manage firewalld
-    dnf:
-      name: python-firewall
-      state: present
