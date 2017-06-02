@@ -56,11 +56,17 @@
       - php-mbstring
       - php-xml
       - php-pecl-zip
+      - php-pecl-apcu
+
+  - name: Nextcloud dir is defined
+    set_fact: 
+      nextcloud_dir: "{{ nextcloud_dir | default('/var/www/html/nextcloud') }}"
+      nextcloud_datadir: "{{ nextcloud_datadir | default('/var/www/html/nextcloud/data') }}"
 
   - name: Nextcloud from git is installed 
     git: 
       repo: https://github.com/nextcloud/server.git
-      dest: /var/www/html/nextcloud
+      dest: "{{ nextcloud_dir }}"
       version: stable12
       
   - name: Nextcloud php opcache tuning is installed
@@ -70,7 +76,7 @@
 
   - name: Set nextcloud data dir
     lineinfile:
-      dest: /var/www/nextcloud/config/config.php
+      dest: "{{ nextcloud_dir }}/config/config.php"
       regexp: '^.*datadirectory.*' 
       line: "  \'datadirectory\' => \'{{ nextcloud_datadir }}\',\'"
     when: nextcloud_datadir is defined
