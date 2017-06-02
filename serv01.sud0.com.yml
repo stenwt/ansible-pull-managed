@@ -8,7 +8,7 @@
   roles: 
     - ansible-set-hostname
     - role-ansible-pull
-    - { role: ansible-nextcloud, nextcloud_datadir:/srv/nextcloud } 
+    - { role: ansible-nextcloud, nextcloud_datadir: /srv/nextcloud } 
 
   tasks:
 
