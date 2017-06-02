@@ -22,4 +22,4 @@
         path: /srv/nextcloud
         src: /dev/sda1
         fstype: ext4
-        state: present
+        state: mounted
