@@ -13,3 +13,6 @@
 [submodule "roles/role-centos7-multimedia"]
 	path = roles/role-centos7-multimedia
 	url = https://github.com/stenwt/role-centos7-multimedia.git
+[submodule "roles/ansible-ssh-hardening"]
+	path = roles/ansible-ssh-hardening
+	url = https://github.com/dev-sec/ansible-ssh-hardening.git

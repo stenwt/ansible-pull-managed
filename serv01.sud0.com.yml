@@ -9,6 +9,7 @@
     - ansible-set-hostname
     - role-ansible-pull
     - { role: ansible-nextcloud, nextcloud_datadir: /srv/nextcloud } 
+    - { role: ansible-ssh-hardening, ssh_allow_agent_forwarding: true }
 
   tasks:
 
