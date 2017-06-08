@@ -49,6 +49,7 @@
     lineinfile:
       dest: /etc/httpd/conf.d/99-http2.conf
       line: 'Protocols h2 h2c http/1.1'
+      create: yes
 
   - name:  php is installed
     dnf:
