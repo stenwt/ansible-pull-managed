@@ -40,6 +40,16 @@
       - httpd_unified
       - httpd_can_network_connect
 
+  - name: http2 apache module is enabled
+    lineinfile: 
+      dest: /etc/httpd/conf.modules.d/00-base.conf
+      line: 'LoadModule http2_module modules/mod_http2.so'
+
+  - name: http2 protocol is enabled
+    lineinfile:
+      dest: /etc/httpd/conf.d/99-http2.conf
+      line: 'Protocols h2 h2c http/1.1'
+
   - name:  php is installed
     dnf:
       name: php
@@ -76,9 +86,8 @@
       src: php-opcache.ini
       dest: /etc/php.d/99-php-opcache.ini
 
-  - name: Set nextcloud data dir
-    lineinfile:
+  - name: Set nextcloud base config
+    template:
+      src: config.php.j2
       dest: "{{ nextcloud_dir }}/config/config.php"
-      regexp: '^.*datadirectory.*' 
-      line: "  \'datadirectory\' => \'{{ nextcloud_datadir }}\',\'"
-    when: nextcloud_datadir is defined
+      force: no
