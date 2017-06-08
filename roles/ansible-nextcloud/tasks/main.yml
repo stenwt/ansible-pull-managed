@@ -69,6 +69,7 @@
       repo: https://github.com/nextcloud/server.git
       dest: "{{ nextcloud_dir }}"
       version: stable12
+      update: no
       
   - name: Nextcloud php opcache tuning is installed
     copy:
