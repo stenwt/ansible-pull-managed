@@ -8,6 +8,7 @@
   roles: 
     - ansible-set-hostname
     - role-ansible-pull
+    - role-auto-apply-updates
     - { role: ansible-nextcloud, nextcloud_datadir: /srv/nextcloud } 
     - { role: ansible-ssh-hardening, sftp_enabled: true, ssh_allow_agent_forwarding: true }
 
